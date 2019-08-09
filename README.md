@@ -12,6 +12,7 @@ docker build -t 127.0.0.1:30500/internal/wordpress:$VERSION . --no-cache
 ## Docker deployment to the local workstation
 
 ~~~
+VERSION=$(cat version)
 docker run --name wordpress -p 8080:80 -d 127.0.0.1:30500/internal/wordpress:$VERSION
 ~~~
 
