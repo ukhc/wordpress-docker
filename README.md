@@ -5,7 +5,8 @@
 
 ## Build the image
 ~~~
-docker build -t 127.0.0.1:30500/internal/wordpress:5.2.2-php7.3-apache-1 . --no-cache
+VERSION=$(cat version)
+docker build -t 127.0.0.1:30500/internal/wordpress:$VERSION . --no-cache
 ~~~
 
 ## Docker deployment to the local workstation
