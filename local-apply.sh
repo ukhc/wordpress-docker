@@ -56,7 +56,7 @@ echo "#################################"
 echo
 
 # add dns
-sudo -- sh -c "echo 127.0.0.1 wordpress  >> /etc/hosts"
+sudo -- sh -c "echo 127.0.0.1 local-wordpress  >> /etc/hosts"
 
 ##########################
 
@@ -86,7 +86,7 @@ done
 kubectl get pods
 echo
 echo "opening the browser..."
-open http://wordpress:8080
+open http://local-wordpress:8080
 
 ##########################
 

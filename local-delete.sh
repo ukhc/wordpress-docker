@@ -42,7 +42,7 @@ echo "#####################################"
 echo
 
 # remove dns
-sudo sed -ie "\|^127.0.0.1 wordpress\$|d" /etc/hosts
+sudo sed -ie "\|^127.0.0.1 local-wordpress\$|d" /etc/hosts
 
 ##########################
 
