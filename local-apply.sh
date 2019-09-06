@@ -70,7 +70,7 @@ fi
 ##########################
 
 echo "setup the persistent volume for wordpress...."
-mkdir -p /Users/Shared/Kubernetes/persistent-volumes/wordpress
+mkdir -p /Users/Shared/Kubernetes/persistent-volumes/default/wordpress
 kubectl apply -f ./kubernetes/wordpress-local-pv.yaml
 
 ##########################
