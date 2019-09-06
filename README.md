@@ -42,7 +42,7 @@ NOTE: Run the following commands from the root folder of this repo.
 ./local-apply.sh
 ~~~
 
-Use this to do the initial installation and configuration for Drupal.  Once you are satisfied with the setup, you can back it up.
+Use this to do the initial installation and configuration for WordPress.  Once you are satisfied with the setup, you can back it up.
 
 
 ### Create a backup of the persistent volume and database
