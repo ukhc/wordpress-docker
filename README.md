@@ -45,13 +45,6 @@ NOTE: Run the following commands from the root folder of this repo.
 Use this to do the initial installation and configuration for Drupal.  Once you are satisfied with the setup, you can back it up.
 
 
-Use these MariaDB values:
-- hostname: mariadb
-- user: root
-- password: admin
-- database name: wordpress
-
-
 ### Create a backup of the persistent volume and database
 ~~~
 ./local-backup.sh
