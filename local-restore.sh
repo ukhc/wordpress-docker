@@ -81,7 +81,7 @@ then
 	kubectl exec -it $POD -- /usr/bin/mysql -u root -padmin -e 'create database wordpress'
 	kubectl exec -i $POD -- /usr/bin/mysql -u root -padmin wordpress < ./backup/$BACKUP_FOLDER/database/wordpress-dump.sql
 	# validate
-	# kubectl exec -it $POD -- /usr/bin/mysql -u root -padmin -e 'use drupal;show tables;'
+	# kubectl exec -it $POD -- /usr/bin/mysql -u root -padmin -e 'use wordpress;show tables;'
 fi
 
 ##########################
