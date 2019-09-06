@@ -79,7 +79,7 @@ When the persistent volume is mounted, it will be empty.  The new MariaDB will a
 Persistent data is stored here: `/Users/Shared/Kubernetes/persistent-volumes/default/wordpress`
 
 
-### Restore from backup (pass it the backup folder name)
+### Restore from backup (pass it the backup folder name and the restore mode --restore-all, --restore-database, or --restore-files)
 ~~~
 ./local-restore.sh 2019-10-31_20-05-55 --restore-all
 ~~~
