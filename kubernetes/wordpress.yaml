@@ -5,7 +5,7 @@ metadata:
   labels:
     app: wordpress
 spec:
-  storageClassName: wordpress-storage
+  storageClassName: wordpress-storage-class
   accessModes:
     - ReadWriteOnce
   resources:
@@ -82,10 +82,10 @@ spec:
           timeoutSeconds: 3
           successThreshold: 1
           failureThreshold: 3
-        volumeMounts:
-        - name: wordpress-volume
-          mountPath: /var/www/html
-      volumes:
-      - name: wordpress-volume
-        persistentVolumeClaim:
-          claimName: wordpress-pv-claim
+        #volumeMounts:
+        #- name: wordpress-volume
+          #mountPath: /var/www/html
+      #volumes:
+      #- name: wordpress-volume
+        #persistentVolumeClaim:
+          #claimName: wordpress-pv-claim
