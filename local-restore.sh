@@ -81,19 +81,25 @@ fi
 
 ##########################
 
-POD=$(kubectl get pod -l app=wordpress -o jsonpath="{.items[0].metadata.name}")
+if [ "$RESTORE_MODE" == "--restore-files" ] || [ "$RESTORE_MODE" == "--restore-all" ]
+then
+	POD=$(kubectl get pod -l app=wordpress -o jsonpath="{.items[0].metadata.name}")
 
-echo "restore html..."
-kubectl exec $POD -- bash -c "rm -rf /var/www/html/*"
-kubectl cp ./backup/$BACKUP_FOLDER/html $POD:/var/www/
+	echo "restore html..."
+	kubectl exec $POD -- bash -c "rm -rf /var/www/html/*"
+	kubectl cp ./backup/$BACKUP_FOLDER/html $POD:/var/www/
+fi
 
-echo "restore database..."
-POD=$(kubectl get pod -l app=mariadb -o jsonpath="{.items[0].metadata.name}")
-kubectl exec -it $POD -- /usr/bin/mysql -u root -padmin -e 'drop database if exists wordpress'
-kubectl exec -it $POD -- /usr/bin/mysql -u root -padmin -e 'create database wordpress'
-kubectl exec -i $POD -- /usr/bin/mysql -u root -padmin wordpress < ./backup/$BACKUP_FOLDER/database/wordpress-dump.sql
-# validate
-# kubectl exec -it $POD -- /usr/bin/mysql -u root -padmin -e 'use drupal;show tables;'
+if [ "$RESTORE_MODE" == "--restore-database" ] || [ "$RESTORE_MODE" == "--restore-all" ]
+then
+	echo "restore database..."
+	POD=$(kubectl get pod -l app=mariadb -o jsonpath="{.items[0].metadata.name}")
+	kubectl exec -it $POD -- /usr/bin/mysql -u root -padmin -e 'drop database if exists wordpress'
+	kubectl exec -it $POD -- /usr/bin/mysql -u root -padmin -e 'create database wordpress'
+	kubectl exec -i $POD -- /usr/bin/mysql -u root -padmin wordpress < ./backup/$BACKUP_FOLDER/database/wordpress-dump.sql
+	# validate
+	# kubectl exec -it $POD -- /usr/bin/mysql -u root -padmin -e 'use drupal;show tables;'
+fi
 
 ##########################
 
