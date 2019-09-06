@@ -1,7 +1,7 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: wordpress-storage
+  name: wordpress-storage-class
 provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer
 
@@ -16,6 +16,6 @@ spec:
     storage: 5Gi
   accessModes:
     - ReadWriteOnce
-  storageClassName: wordpress-storage
+  storageClassName: wordpress-storage-class
   hostPath:
-    path: "/Users/Shared/Kubernetes/persistent-volumes/wordpress"
+    path: "/Users/Shared/Kubernetes/persistent-volumes/default/wordpress"
