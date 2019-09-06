@@ -31,24 +31,20 @@ kubectl delete -f ./kubernetes/wordpress.yaml
 
 ##########################
 
-echo
-echo "#####################################"
-echo "##  REMOVE ENTRY FROM /ETC/HOSTS   ##"
-echo "##               ---               ##"
-echo "##    If you are prompted for a    ##"
-echo "##    password, use your local     ##"
-echo "##    account password.            ##"
-echo "#####################################"
-echo
-
-# remove dns
-sudo sed -ie "\|^127.0.0.1 local-wordpress\$|d" /etc/hosts
+echo "delete the persistent volume for wordpress...."
+kubectl delete -f ./kubernetes/wordpress-local-pv.yaml
+rm -rf /Users/Shared/Kubernetes/persistent-volumes/default/wordpress
 
 ##########################
 
-echo "delete the persistent volume for wordpress...."
-kubectl delete -f ./kubernetes/wordpress-local-pv.yaml
-rm -rf /Users/Shared/Kubernetes/persistent-volumes/wordpress
+echo "delete mariadb...."
+kubectl delete -f https://raw.githubusercontent.com/ukhc/mariadb-docker/master/kubernetes/mariadb-single.yaml
+
+##########################
+
+echo "delete the persistent volume for mariadb...."
+kubectl delete -f https://raw.githubusercontent.com/ukhc/mariadb-docker/master/kubernetes/mariadb-single-local-pv.yaml
+rm -rf /Users/Shared/Kubernetes/persistent-volumes/default/mariadb
 
 ##########################
 
