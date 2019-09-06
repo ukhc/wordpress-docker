@@ -30,10 +30,7 @@ Before you deploy, you will need a running instance of MariaDB in Kubernetes: ht
 
 Deploy (run these commands from the root folder of this repo)
 ~~~
-mkdir -p /Users/Shared/Kubernetes/persistent-volumes/wordpress
-kubectl apply -f ./kubernetes/wordpress-local-pv.yaml
-kubectl apply -f ./kubernetes/wordpress.yaml
-open http://127.0.0.1:8080
+./local-apply.sh
 ~~~
 
 Scale
@@ -43,7 +40,5 @@ kubectl scale --replicas=4 deployment/wordpress
 
 Delete
 ~~~
-kubectl delete -f ./kubernetes/wordpress.yaml
-kubectl delete -f ./kubernetes/wordpress-local-pv.yaml
-rm -rf /Users/Shared/Kubernetes/persistent-volumes/wordpress
+./local-delete.sh
 ~~~
