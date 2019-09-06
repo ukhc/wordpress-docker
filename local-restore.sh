@@ -14,6 +14,34 @@
 
 
 ##########################
+# validate positional parameters
+
+if [ "$1" == "" ] || [ "$2" == "" ]
+then
+	echo "USEAGE: ./local-restore.sh [BACKUP_FOLDER_NAME] [--restore-all --restore-database --restore-files]"
+	echo "e.g. ./local-restore.sh local_2019-10-31_20-05-55 --restore-all"
+	exit 1
+fi
+
+BACKUP_FOLDER="$1"
+if [ -d "./backup/$BACKUP_FOLDER" ] 
+then
+    # ./backup/$BACKUP_FOLDER exists
+    echo "Restoring from $BACKUP_FOLDER..."
+else
+    echo "ERROR: Directory ./backup/$BACKUP_FOLDER does not exist"
+	exit 1
+fi
+
+if [ "$2" == "--restore-all" ] || [ "$2" == "--restore-database " ] || [ "$2" == "--restore-files" ]
+then
+	RESTORE_MODE="$2"
+else
+    echo "ERROR: Restore mode is not valid.  Must be one of the following --restore-all --restore-database --restore-files"
+	exit 1
+fi
+
+##########################
 
 echo
 echo "*** WARNING: This script will restore the the data in the persistent volumes and database ***"
