@@ -64,23 +64,6 @@ fi
 
 ##########################
 
-if [ "$1" != "" ]; then
-    BACKUP_FOLDER="$1"
-    if [ -d "./backup/$BACKUP_FOLDER" ] 
-	then
-    	# ./backup/$BACKUP_FOLDER exists
-    	echo "Restoring from $BACKUP_FOLDER..."
-	else
-    	echo "ERROR: Directory ./backup/$BACKUP_FOLDER does not exist"
-    	exit
-	fi
-else
-    echo "ERROR: Please supply the backup folder name as a parameter (e.g. ./local-restore.sh 2019-10-31_20-05-55)"
-    exit
-fi
-
-##########################
-
 if [ "$RESTORE_MODE" == "--restore-files" ] || [ "$RESTORE_MODE" == "--restore-all" ]
 then
 	POD=$(kubectl get pod -l app=wordpress -o jsonpath="{.items[0].metadata.name}")
