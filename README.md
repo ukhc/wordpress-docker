@@ -81,7 +81,7 @@ Persistent data is stored here: `/Users/Shared/Kubernetes/persistent-volumes/def
 
 ### Restore from backup (pass it the backup folder name)
 ~~~
-./local-restore.sh 2019-10-31_20-05-55
+./local-restore.sh 2019-10-31_20-05-55 --restore-all
 ~~~
 
 Restore from one of your backup folders to populate the modules, profiles, themes and sites folders as well as the database.  The backups are stored in the 'backup' folder in this repo.
