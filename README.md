@@ -92,3 +92,15 @@ Some changes may require a restart of the containers.  This script will do that 
 ~~~
 kubectl scale --replicas=4 deployment/wordpress
 ~~~
+
+
+### Shell into the container
+~~~
+./local-shell-wordpress.sh
+~~~
+
+
+### Get the logs from the container
+~~~
+./local-logs-wordpress.sh
+~~~
