@@ -17,11 +17,11 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: wordpress-pv-claim
+  name: wordpress-html-pv-claim
   labels:
     app: wordpress
 spec:
-  storageClassName: wordpress-storage-class
+  storageClassName: wordpress-html-storage-class
   accessModes:
     - ReadWriteOnce
   resources:
@@ -99,9 +99,9 @@ spec:
           successThreshold: 1
           failureThreshold: 3
         volumeMounts:
-#wordpress-volume#        - name: wordpress-volume
+#wordpress-volume#        - name: wordpress-html-volume
 #wordpress-volume#          mountPath: /var/www/html
 #wordpress-volume#      volumes:
-#wordpress-volume#      - name: wordpress-volume
+#wordpress-volume#      - name: wordpress-html-volume
 #wordpress-volume#        persistentVolumeClaim:
-#wordpress-volume#          claimName: wordpress-pv-claim
+#wordpress-volume#          claimName: wordpress-html-pv-claim

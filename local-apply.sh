@@ -15,6 +15,18 @@
 
 ##########################
 
+echo "validate positional parameters..."
+
+if [ "$1" == "--with-volumes" ] || [ "$1" == "--without-volumes" ]
+then
+	DEPLOY_MODE="$1"
+else
+    echo "ERROR: Deploy mode is not valid.  Must be one of the following --with-volumes --without-volumes"
+	exit 1
+fi
+
+##########################
+
 echo "ensure the correct environment is selected..."
 KUBECONTEXT=$(kubectl config view -o template --template='{{ index . "current-context" }}')
 if [ "$KUBECONTEXT" != "docker-desktop" ]; then
@@ -70,7 +82,7 @@ fi
 ##########################
 
 echo "setup the persistent volume for wordpress...."
-mkdir -p /Users/Shared/Kubernetes/persistent-volumes/default/wordpress
+mkdir -p /Users/Shared/Kubernetes/persistent-volumes/default/wordpress/html
 kubectl apply -f ./kubernetes/wordpress-local-pv.yaml
 
 ##########################
@@ -80,7 +92,7 @@ rm -f yaml.tmp
 cp ./kubernetes/wordpress.yaml yaml.tmp
 
 #### Use the '--with-volumes' parameter to turn on the volume mounts ####
-if [ "$1" == "--with-volumes" ]
+if [ "$DEPLOY_MODE" == "--with-volumes" ]
 then
     echo "--with-volumes parameter was used, turning on the persistent volumes..."
     sed -i '' 's/#volumeMounts/volumeMounts/' yaml.tmp
@@ -90,7 +102,7 @@ then
 	sed -i '' 's/#persistentVolumeClaim/persistentVolumeClaim/' yaml.tmp
 	sed -i '' 's/#claimName/claimName/' yaml.tmp
 else
-    echo "--with-volumes parameter was not used, persistent volumes are off..."
+    echo "--without-volumes parameter was used, persistent volumes are off..."
 fi
 
 kubectl apply -f yaml.tmp
