@@ -95,12 +95,7 @@ cp ./kubernetes/wordpress.yaml yaml.tmp
 if [ "$DEPLOY_MODE" == "--with-volumes" ]
 then
     echo "--with-volumes parameter was used, turning on the persistent volumes..."
-    sed -i '' 's/#volumeMounts/volumeMounts/' yaml.tmp
-	sed -i '' 's/#- name/- name/' yaml.tmp
-	sed -i '' 's/#mountPath/mountPath/' yaml.tmp
-	sed -i '' 's/#volumes/volumes/' yaml.tmp
-	sed -i '' 's/#persistentVolumeClaim/persistentVolumeClaim/' yaml.tmp
-	sed -i '' 's/#claimName/claimName/' yaml.tmp
+    sed -i '' 's/#wordpress-html-volume#//' yaml.tmp
 else
     echo "--without-volumes parameter was used, persistent volumes are off..."
 fi
