@@ -99,9 +99,9 @@ spec:
           successThreshold: 1
           failureThreshold: 3
         volumeMounts:
-#wordpress-volume#        - name: wordpress-html-volume
-#wordpress-volume#          mountPath: /var/www/html
-#wordpress-volume#      volumes:
-#wordpress-volume#      - name: wordpress-html-volume
-#wordpress-volume#        persistentVolumeClaim:
-#wordpress-volume#          claimName: wordpress-html-pv-claim
+#wordpress-html-volume#        - name: wordpress-html-volume
+#wordpress-html-volume#          mountPath: /var/www/html
+#wordpress-html-volume#      volumes:
+#wordpress-html-volume#      - name: wordpress-html-volume
+#wordpress-html-volume#        persistentVolumeClaim:
+#wordpress-html-volume#          claimName: wordpress-html-pv-claim
